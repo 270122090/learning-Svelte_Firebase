@@ -9,6 +9,30 @@ const app = new App({
 	}
 });
 
+
+//storing all my collections in my database in a variable 
+const colRef = collection(db, 'Database')
+
+//looks at the collection colRef and retrieve and console log an array of our documents (not the data) 
+getDocs(colRef)
+.then((snapshot)=>{
+  let user =[]
+
+  //cycle through the snapshot
+  snapshot.docs.forEach((doc) => {
+    user.push({ ...doc.data(), id:doc.id})
+  })
+  console.log(user)
+}).catch(err => {
+  console.log(err.message)
+})
+
+
+//callling the data function to use the actual ID of the document
+
+
+
+
 /*adding documents to the database -- Working
 try {
   const docRef = addDoc(collection(db, "Database"), {
@@ -56,12 +80,10 @@ const userref = doc(db, 'Database', 'CkSkBSyoa6uhI18ABAnr');
 
 
 
-//Read Data
+//getting data
+
 
 //need to add a listener
-
-
-
 
 export default app;
 

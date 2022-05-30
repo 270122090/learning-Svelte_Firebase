@@ -8,17 +8,13 @@
 
 <main>
 	<h1>Hello {name}!</h1>
+	This code can now:
+	<p>Add Users to database</p>
+	<p>Delete Users fields in document</p>
 	
 </main>
 
-<div class="input-group mb-3">
-	<span class="input-group-text" id="name">Name</span>
-	<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-  </div>
-<div class="input-group mb-3">
-	<span class="input-group-text" id="surname">Surname</span>
-	<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-  </div>
+
 
 
 <style>
