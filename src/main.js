@@ -1,6 +1,6 @@
 import App from './App.svelte';
 import {db} from './firebase.js'
-import { collection, addDoc,getDocs,doc, setDoc, updateDoc } from "firebase/firestore"; 
+import {collection, addDoc,getDocs, setDoc, getDoc,doc, updateDoc, deleteField } from "firebase/firestore"; 
 
 const app = new App({
 	target: document.body,
@@ -9,39 +9,60 @@ const app = new App({
 	}
 });
 
-//adding documents -- Working
+/*adding documents to the database -- Working
 try {
   const docRef = addDoc(collection(db, "Database"), {
     first: "Number",
     last: "Four",
   });
 
-  console.log("Document written with ID: ", docRef.id);
+  console.log("this is just the basic);
 } catch (e) {
   console.error("Error adding document: ", e);
-}
+}*/
 
 
-//Nested possible to include skills
+/*Nested possible to include skills -- working
 const frankDocRef = doc(collection(db, "Database"));
 setDoc(frankDocRef, {
     name: "Number",
     surname: "Five",
 	Skill: { Skill1: "Python", Skill2: "Javascript", Skill3: "Firestore" }, 
 });
+console.log("this is nested);*/
 
-/* To update age and favorite color:
-await updateDoc(frankDocRef, {
-    "age": 13,
-    "favorites.color": "Red"
+/* Add a second document with a additional data -- working
+try {
+  const docRef = addDoc(collection(db, "Database"), {
+    first: "Alan",
+    middle: "Mathison",
+    last: "Turing",
+    born: 1912
+  });
+
+  console.log("this is adding more info");
+} catch (e) {
+  console.error("Error adding document: ", e);
+}*/
+
+/*delete data
+
+const userref = doc(db, 'Database', 'CkSkBSyoa6uhI18ABAnr');
+
+// Remove the 'capital' field from the document
+  updateDoc(userref, {
+    middle: deleteField()
 });*/
 
-/*
-//getting data -- error msg with forEach
-const querySnapshot = getDocs(collection(db, "users"));
-querySnapshot.forEach((doc) => {
-  console.log(`${doc.id} => ${doc.data()}`);
-});*/
+
+
+//Read Data
+
+//need to add a listener
+
+
 
 
 export default app;
+
+

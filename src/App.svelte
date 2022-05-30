@@ -2,6 +2,8 @@
 	export let name;
 	
 	console.log ("Hallo Nolene");
+
+
 </script>
 
 <main>
