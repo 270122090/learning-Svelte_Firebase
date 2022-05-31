@@ -1,6 +1,6 @@
 import App from './App.svelte';
 import {db} from './firebase.js'
-import {collection, addDoc,getDocs, setDoc, getDoc,doc, updateDoc, deleteField } from "firebase/firestore"; 
+import {collection, addDoc,getDocs, setDoc, getDoc,doc, updateDoc, deleteField,query,where, onSnapshot } from "firebase/firestore"; 
 
 const app = new App({
 	target: document.body,
@@ -9,9 +9,13 @@ const app = new App({
 	}
 });
 
+//import {query,where} from "firebase/firestore";
+
 
 //storing all my collections in my database in a variable 
 const colRef = collection(db, 'Database')
+
+
 
 //looks at the collection colRef and retrieve and console log an array of our documents (not the data) 
 getDocs(colRef)
@@ -27,6 +31,17 @@ getDocs(colRef)
   console.log(err.message)
 })
 
+// console logging all the  users who's firstname is first
+let username = "Number"
+const collectionRef = collection(db,"Database")
+const userquery = query(collectionRef,where("first","==",username))
+onSnapshot(userquery,(data) => {
+  console.log(
+    data.docs.map((theuser) =>{
+      return theuser.data();
+    })
+  )
+})
 
 //callling the data function to use the actual ID of the document
 

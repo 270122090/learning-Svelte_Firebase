@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore,collection, getDocs } from "firebase/firestore";
+import { getFirestore} from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,13 +24,5 @@ const app = initializeApp(firebaseConfig);
 //representing our database
 export const db = getFirestore(app);
 
-//storing all my collections in my database in a variable 
-const colRef = collection(db, 'Database')
-
-//looks at the collection colRef and retrieve all the data
-getDocs(colRef)
-.then((snapshot)=>{
-  console.log(snapshot.docs)
-})
 
 export default app;
