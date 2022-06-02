@@ -1,7 +1,7 @@
 <script>
 
 	// add data
-		import {_firestore_} from "../../routes/firebase/firebase.js"; //Importing Firestore component that was initialised in firebase.js
+		import {NHDatabase} from '../src/Firebase/firestore.js'; //Importing Firestore component that was initialised in firebase.js
 		import {collection, addDoc} from "firebase/firestore"; // Importing functions from Firestore
 		
 	
@@ -20,11 +20,53 @@
 	
 		let inputElement; // Declaring input element used for binding ui to list variables
 	
+		/* ********************************************************************************************************************************************************* \
+		                                             MY ORIGINAL TESTING CODE
+
+		/*adding documents to the database -- Working
+		try {
+		const docRef = addDoc(collection(NHDataBase, "Database"), {
+			first: "Number",
+			last: "Four",
+		});
+
+		console.log("this is just the basic);
+		} catch (e) {
+		console.error("Error adding document: ", e);
+		}*/
+
+
+		/*Nested possible to include skills -- working
+		const frankDocRef = doc(collection(NHDataBase, "Database"));
+		setDoc(frankDocRef, {
+			name: "Number",
+			surname: "Five",
+			Skill: { Skill1: "Python", Skill2: "Javascript", Skill3: "Firestore" }, 
+		});
+		console.log("this is nested);*/
+
+		/* Add a second document with a additional data -- working
+		try {
+		const docRef = addDoc(collection(NHDataBase, "Database"), {
+			first: "Alan",
+			middle: "Mathison",
+			last: "Turing",
+			born: 1912
+		});
+
+		console.log("this is adding more info");
+		} catch (e) {
+		console.error("Error adding document: ", e);
+		}*/
+													
+		/* ********************************************************************************************************************************************************* \
+		                                             FINAL CODE
+
 		/* Adding User to Firestore *
 		 *** Async function declared with nested Try/Catch(error handling). Code will continue to execute (even if function is long running) until promise (await) has been made. */
 		const addUserToFirestore = async () => {
 		  try {
-			await addDoc(collection(_firestore_, "AllUsers"), {
+			await addDoc(collection(NHDatabase, "DataBase"), {
 			  ..._userinfo,
 			  createdAt: Date.now(),
 			});
@@ -34,20 +76,24 @@
 		  }
 		};
 	
-		// Handling form submission. Passing addUserToFirestore() as well as relevant variables so that function executes when form submitted.
+		/* Handling form submission. Passing addUserToFirestore() as well as relevant variables so that function executes when form submitted.
 		const handleSubmit = () => {
 		  addUserToFirestore();
 		  _userinfo = { firstname: "", lastname: "" };
 		  inputElement.focus();
-		};
+		};*/
+
 	
 	</script>
+
+
+
 	
 	<div class="container p-4">
 		<div class="row">
 		  <div class="col-md-6 offset-md-3">
 			<!-- Task Form  handleSubmit() called when form is submitted. Default form response prevented-->
-			<form on:submit|preventDefault={handleSubmit} class="card card-body p-5">
+			<!--<form on:submit|preventDefault={} class="card card-body p-5"> -->
 			  <div class="mb-3">
 				  <h5 class="card-title"> Welcome Your BeMe page <br></h5>
 				<label for="title" class="fs-5 text-secondary">Firstname</label>
@@ -149,14 +195,11 @@
 					bind:this={inputElement}
 					class="form-control"
 				  /></li>
-			 
-
-			    
+				  
 			  <div class="d-flex gap-2 mt-2">
 				<button class="btn btn-primary btn-sm d-flex" >Save</button>
 			 </div>
-				  
-			</form>
+			</div>
 		</div>
 	</div>
-  </div>
+

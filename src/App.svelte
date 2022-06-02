@@ -1,39 +1,22 @@
 <script>
 	export let name;
-	
+
 	console.log ("Hallo Nolene");
-	// add data
-	import {db} from "./firebase.js"; //Importing Firestore component that was initialised in firebase.js
-	import {collection, addDoc} from "firebase/firestore"; // Importing functions from Firestore
 
-	//import data
-	import {query,where} from "firebase/firestore";
-
-	let username = "Number"
-	const collectionRef = collection(db,"Database")
-	const userquery = query(collectionRef,where("first","==",username))
-
-
+	import Signup from '../src/BeMe_loginform.svelte'
 
 </script>
+
 <!-- HTML TEMPLATE BEGINS -->
 <main>
-	<h1>Hello {name}!</h1>
+	<h1>Hallo {name}!</h1>
 	This code can now:
 	<p>Add Users to database</p>
 	<p>Delete Users fields in document</p>
-	<p>Run a Query</p>
-	
-
-	
+	<p>Run a query</p>
 
 </main>
-
-
-
-
-
-
+<Signup/>
 
 <style>
 
